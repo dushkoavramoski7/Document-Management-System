@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>List documents from clients -- Vraboteni</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Klient</th>
+            <th>Dokuemnt</th>
+            <th>Predmet na dokument</th>
+            <th>Datum primen</th>
+            <th>Posledna napravena promena</th>
+            <th>Status na dokument</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="doc: ${list_dokuemts_klient}">
+            <td th:text="${doc.getId_klient()}">Klient</td>
+            <td th:text="${doc.getId_dokument()}">Dokuemnt</td>
+            <td th:text="${doc.getPredmet_na_dokument()}">Predmet na dokument</td>
+            <td th:text="${doc.getDatum_primen()}">Datum primen</td>
+            <td th:text="${doc.getPosledna_napravena_promena()}">Posledna napravena promena</td>
+            <td th:text="${doc.getStatus_dokument()}">Status na dokument</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+
+    <h1>All documents from one client -- Klient</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Klient</th>
+            <th>Dokuemnt</th>
+            <th>Predmet na dokument</th>
+            <th>Datum primen</th>
+            <th>Posledna napravena promena</th>
+            <th>Status na dokument</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="klient_doc:${douments_from_oneClient}">
+            <td th:text="${klient_doc.getId_klient()}">Klient</td>
+            <td th:text="${klient_doc.getId_dokument()}">Dokuemnt</td>
+            <td th:text="${klient_doc.getPredmet_na_dokument()}">Predmet na dokument</td>
+            <td th:text="${klient_doc.getDatum_primen()}">Datum primen</td>
+            <td th:text="${klient_doc.getPosledna_napravena_promena()}">Posledna napravena promena</td>
+            <td th:text="${klient_doc.getStatus_dokument()}">Status na dokument</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <h1>Detailed view for all logs -- Vraboteni</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Rekord na sledenje</th>
+            <th>Klient</th>
+            <th>Ime klient</th>
+            <th>Kompanija</th>
+            <th>Dokument</th>
+            <th>Predmet na dokument/th>
+            <th>Datum primen</th>
+            <th>Dostaven file od klient</th>
+            <th>Datum dostaven odgovor</th>
+            <th>Datum promena</th>
+            <th>Status dokument</th>
+            <th>Odgovor file</th>
+            <th>Komentar</th>
+            <th>Promena</th>
+            <th>Vraboten</th>
+            <th>Ime vraboten</th>
+            <th>Prezime vraboten</th>
+            <th>Oddel</th>
+            <th>Ime oddel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="log: ${detailedVew_log}">
+            <td th:text="${log.getId_rekord()}">Rekord na sledenje</td>
+            <td th:text="${log.getId_klient()}">Klient</td>
+            <td th:text="${log.getIme()}">Ime klient</td>
+            <td th:text="${log.getKompanija()}">Kompanija</td>
+            <td th:text="${log.getId_dokument()}">Dokument</td>
+            <td th:text="${log.getPredmet_na_dokument()}">Predmet na dokument</td>
+            <td th:text="${log.getDatum_primen()}">Datum primen</td>
+            <td th:text="${log.getDostaven_file_od_klient()}">Dostaven file od klient</td>
+            <td th:text="${log.getDatum_dostaven_odgovor()}">Datum dostaven odgovor</td>
+            <td th:text="${log.getDatum_promena()}">Datum promena</td>
+            <td th:text="${log.getStatus_dokument()}">Status dokument</td>
+            <td th:text="${log.getOdgovor_file()}">Odgovor file</td>
+            <td th:text="${log.getKomentar()}">Komentar</td>
+            <td th:text="${log.getPromena()}">Promena</td>
+            <td th:text="${log.getId_vraboten()}">Vraboten</td>
+            <td th:text="${log.getIme_vraboten()}">Ime vraboten</td>
+            <td th:text="${log.getPrezime_vraboten()}">Prezime vraboten</td>
+            <td th:text="${log.getId_oddel()}">Oddel</td>
+            <td th:text="${log.getIme_oddel()}">Ime oddel</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h1>Detailed view log for id_rekord = 3 -- Klient</h1>
+    <ul>
+        <li th:text="${detailedView_log_idRekord.getId_rekord()}"></li>
+        <li th:text="${detailedView_log_idRekord.getId_klient()}"></li>
+        <li th:text="${detailedView_log_idRekord.getIme()}"></li>
+        <li th:text="${detailedView_log_idRekord.getKompanija()}"></li>
+        <li th:text="${detailedView_log_idRekord.getId_dokument()}"></li>
+        <li th:text="${detailedView_log_idRekord.getPredmet_na_dokument()}"></li>
+        <li th:text="${detailedView_log_idRekord.getDatum_primen()}"></li>
+        <li th:text="${detailedView_log_idRekord.getDostaven_file_od_klient()}"></li>
+        <li th:text="${detailedView_log_idRekord.getDatum_dostaven_odgovor()}"></li>
+        <li th:text="${detailedView_log_idRekord.getDatum_promena()}"></li>
+        <li th:text="${detailedView_log_idRekord.getStatus_dokument()}"></li>
+        <li th:text="${detailedView_log_idRekord.getOdgovor_file()}"></li>
+        <li th:text="${detailedView_log_idRekord.getKomentar()}"></li>
+        <li th:text="${detailedView_log_idRekord.getPromena()}"></li>
+        <li th:text="${detailedView_log_idRekord.getId_vraboten()}"></li>
+        <li th:text="${detailedView_log_idRekord.getIme_vraboten()}"></li>
+        <li th:text="${detailedView_log_idRekord.getPrezime_vraboten()}"></li>
+        <li th:text="${detailedView_log_idRekord.getId_oddel()}"></li>
+        <li th:text="${detailedView_log_idRekord.getIme_oddel()}"></li>
+    </ul>
+    <hr>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
