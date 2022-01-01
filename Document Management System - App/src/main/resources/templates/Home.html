@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
+<style>
+    table{
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <body>
     <h1>List documents from clients -- Vraboteni</h1>
     <table>
@@ -130,15 +140,30 @@
         <li th:text="${detailedView_log_idRekord.getIme_oddel()}"></li>
     </ul>
     <hr>
-
-
-
-
-
-
-
-
-
+    <h1>Kolku dokumenti imaat usepsno realizirano vrabotenite -- Vraboteni</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Vraboten</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Oddel</th>
+            <th>Dokumenti primeno</th>
+            <th>Realizirani dokumenti</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vrab:${Izvestaj_aktivnost_vraboteni}">
+            <td th:text="${vrab.getId_vraboten()}">Vraboten</td>
+            <td th:text="${vrab.getIme_vraboten()}">Ime</td>
+            <td th:text="${vrab.getPrezime_vraboten()}">Prezime</td>
+            <td th:text="${vrab.getIme_oddel()}">Oddel</td>
+            <td th:text="${vrab.getDostaveni_dokumenti_na_vraboteniot_vo_oddelot()}">Dokumenti primeno</td>
+            <td th:text="${vrab.getRealizirani_baranja_od_vraboteniot_vo_oddelot()}">Realizirani dokumenti</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
 
 </body>
 </html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Documents from client</title>
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+      <h2 class="mb-5">Листа на документи од клиент</h2>
+
+      <div class="table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th scope="col">Предмет на документот</th>
+              <th scope="col">Датум примен</th>
+              <th scope="col">Последна направена промена</th>
+              <th scope="col">Статус</th>
+              <th scope="col">Прикажи повеќе</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr scope="row" th:each="doc: ${list_dokuemts_klient}">
+              <td th:text="${doc.getPredmet_na_dokument()}">Предмет на документот</td>
+              <td th:inline="text">
+                [[${doc.getDatum_primen}]]
+                <small class="d-block" th:text="${doc.getDatum_primenDen()}"></small>
+              </td>
+              <td th:inline="text">
+                [[${doc.getPosledna_napravena_promena()}]]
+                <small class="d-block" th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
+              </td>
+              <td th:text="${doc.getStatus_dokument()}">Статус</td>
+              <td>Прикажи повеќе</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+  </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

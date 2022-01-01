@@ -1,6 +1,5 @@
 package com.example.document_management_system.Model.Composite_Primary_Keys;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,6 +8,7 @@ public class DokumentId  implements Serializable {
     private int id_klient;
     private int id_dokument;
 
+    //default
     public DokumentId() {
     }
 

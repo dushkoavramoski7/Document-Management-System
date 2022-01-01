@@ -1,6 +1,8 @@
 package com.example.document_management_system.Model;
 
 import lombok.Data;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 public class oddel {
 
     @Id
-    private char id_oddel;
+    private char  id_oddel;
     private String ime_oddel;
 
 }

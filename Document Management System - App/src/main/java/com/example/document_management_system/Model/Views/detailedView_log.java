@@ -30,7 +30,6 @@ public class detailedView_log {
     private int id_vraboten;
     private String ime_vraboten;
     private String prezime_vraboten;
-    @Column(name="id_oddel", columnDefinition="char(5)")
     private char id_oddel;
     private String ime_oddel;
 
