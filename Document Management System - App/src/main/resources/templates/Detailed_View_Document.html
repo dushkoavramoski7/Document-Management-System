@@ -65,7 +65,7 @@
 
 <h4 th:text="'Име на клиент: '+ ${cel_period[0].getIme()}"></h4>
 <hr>
-<h4 th:text="'Датум на примено барање клиентот : '+ ${DetailedViewDocument[0].getDatum_primen()}"></h4>
+<h4 th:text="'Датум на примено барање клиентот : '+ ${DetailedViewDocument[0].getDatum_primen() + ', '+ DetailedViewDocument[0].getDatum_primenDen()}"></h4>
 <h4 th:text="'Предмет на документот : '+ ${DetailedViewDocument[0].getPredmet_na_dokument()}"></h4>
 <h4 th:text="'Доставен фајл : '+ ${DetailedViewDocument[0].getDostaven_file()}"></h4>
 <hr>

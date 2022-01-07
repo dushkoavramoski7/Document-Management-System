@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Immutable
 @Table(name="detialview_log")
 public class detailedView_log {
+
     @Id
     private int id_rekord;
     private int id_klient;

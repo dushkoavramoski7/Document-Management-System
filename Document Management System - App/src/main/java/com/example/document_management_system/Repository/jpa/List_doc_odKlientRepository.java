@@ -12,6 +12,14 @@ import java.util.List;
 @Repository
 public interface List_doc_odKlientRepository extends JpaRepository<Lista_doc_odKlient, Integer> {
 
+    //za daden vraboten koi dokumeni mu bile isprateni
+    @Query("select a from Lista_doc_odKlient as a where a.id_vraboten = :id_vraboten")
+    List<Lista_doc_odKlient> findAllbyEmployee(@Param("id_vraboten") Integer id_vraboten);
+
+    //za daden vraboten koi klienti mu bile klienti
+    @Query("select distinct(a.id_klient), a.ime  from Lista_doc_odKlient as a where a.id_vraboten = :id_vraboten")
+    List<String> findAllclientsbyEmployee(@Param("id_vraboten") Integer id_vraboten);
+
     // prikaz samo za vrabotenite
     @Query("select a from Lista_doc_odKlient as a order by a.ime")
     List<Lista_doc_odKlient> findAll();
@@ -19,5 +27,7 @@ public interface List_doc_odKlientRepository extends JpaRepository<Lista_doc_odK
     //zemi lista od dokumenti prateni od daden klient so id = id_klient
     @Query("select a from Lista_doc_odKlient as a where a.id_klient = :id_klient")
     List<Lista_doc_odKlient> getDocumentsFromClient(@Param("id_klient") Integer id_klient);
+
+
 
 }

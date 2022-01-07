@@ -19,6 +19,7 @@ public class Lista_doc_odKlient {
     private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
     @Id
     private int id_klient;
+    private int id_vraboten;
     private String ime;
     @Id
     private int id_dokument;
@@ -26,6 +27,10 @@ public class Lista_doc_odKlient {
     private LocalDateTime datum_primen;
     private LocalDateTime posledna_napravena_promena;
     private String status_dokument;
+
+    public int getId_vraboten() {
+        return id_vraboten;
+    }
 
     public String getIme() {
         return ime;
@@ -60,4 +65,5 @@ public class Lista_doc_odKlient {
     public String getStatus_dokument() {
         return status_dokument;
     }
+
 }

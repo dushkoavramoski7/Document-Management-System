@@ -18,6 +18,7 @@ public class detailedView_doc {
 
     private int id_dokument;
     private int id_klient;
+    private String ime;
     private LocalDateTime datum_primen;
     private String predmet_na_dokument;
     private String tip_na_dokument;
@@ -27,6 +28,10 @@ public class detailedView_doc {
     private LocalDateTime datum_promena;
     private String status_dokument;
 
+    public String getIme() {
+        return ime;
+    }
+
     public int getId_dokument() {
         return id_dokument;
     }
@@ -35,9 +40,15 @@ public class detailedView_doc {
         return id_klient;
     }
 
-    public LocalDateTime getDatum_primen() {
-        return datum_primen;
+    public String getDatum_primen() {
+        return DateTimeFormatter.ofPattern(DATE_FORMATTER).format(datum_primen);
     }
+
+    public DayOfWeek getDatum_primenDen()
+    {
+        return datum_primen.getDayOfWeek();
+    }
+
 
     public String getPredmet_na_dokument() {
         return predmet_na_dokument;

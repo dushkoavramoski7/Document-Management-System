@@ -36,7 +36,7 @@ public class ListDocuments {
     public String getHomePage(Model model, HttpServletRequest req, HttpServletResponse resp)
     {
         model.addAttribute("clients", listaKlientiService.findAll());
-        model.addAttribute("vraboteni", vrabotenService.findAll());
+        model.addAttribute("vraboteni", vraboten_kolku_doc_uspesno_realiziralService.findAll());
         return "Home";
     }
 
@@ -63,10 +63,11 @@ public class ListDocuments {
         String employee = req.getParameter("employee"); // sesija za klient
         HttpSession httpSession = req.getSession(); // ako postoi sesija ja zema, ako ne, ja kreira
         httpSession.setAttribute("employee", employee);
-        model.addAttribute("clients", listaKlientiService.findAll());
-        model.addAttribute("vraboteni", vrabotenService.findAll());
+
+        model.addAttribute("clients", list_doc_odKlientService.findAllclientsbyEmployee(employee));
         model.addAttribute("employee", employee);
-        model.addAttribute("dokumenti", vraboten_kolku_doc_uspesno_realiziralService.findbyId(Integer.parseInt(employee)));
+        model.addAttribute("document", vraboten_kolku_doc_uspesno_realiziralService.findbyId(employee));
+        model.addAttribute("zadadeni", list_doc_odKlientService.findAllbyEmployee(employee));
         return  "ListDocumentsEmployee";
     }
 

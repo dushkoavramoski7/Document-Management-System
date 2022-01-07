@@ -5,6 +5,7 @@ import com.example.document_management_system.Repository.jpa.Vraboten_kolku_doc_
 import com.example.document_management_system.Service.Vraboten_kolku_doc_uspesno_realiziralService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,14 @@ public class Vraboten_kolku_doc_uspesno_realiziralImpl implements Vraboten_kolku
 
 
     @Override
-    public Optional<Vraboten_kolku_doc_uspesno_realiziral> findbyId(Integer id_vraboten) {
-        return vraboten_kolku_doc_uspesno_realiziralRepository.findById(id_vraboten);
+    public List<Vraboten_kolku_doc_uspesno_realiziral> findbyId(String employee) {
+
+        Integer id_vraboten = Integer.parseInt(employee);
+        return vraboten_kolku_doc_uspesno_realiziralRepository.findAllById(id_vraboten);
+    }
+
+    @Override
+    public List<Vraboten_kolku_doc_uspesno_realiziral> findAll() {
+        return vraboten_kolku_doc_uspesno_realiziralRepository.findAll();
     }
 }

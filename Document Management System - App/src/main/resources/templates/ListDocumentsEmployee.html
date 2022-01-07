@@ -69,11 +69,61 @@
 <form th:method="POST" th:action="@{/home/client}" style="display: inline-block; float: right">
     <select name="client"  onchange="this.form.submit();" >
         <option value="" selected disabled hidden>-- Select client -- </option>
-        <option th:each="client : ${clients}" th:value="${client.getIdKlient()}" th:text="${client.getIme()} + ' ' + (${client.getKompanija()} ?: '')" name="client"></option>
+        <option th:each="client : ${clients}" th:value="${client.charAt(0)}" th:text="${client.substring(2, client.length())}" name="client"></option>
     </select>
 </form>
 
-<h1 th:text="${employee}"> </h1>
+
+<table class="doc_bymonth_year" style="margin-bottom: 40px">
+<thead>
+<tr>
+    <th>Име вработен</th>
+    <th>Презиме вработен</th>
+    <th>Оддел</th>
+    <th>Вкупно доставени документи <br> <span style="font-size: 10px">на вработениот</span></th>
+    <th>Реализирани документи <br> <span style="font-size: 10px">од вработениот</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td th:text="${document[0].getIme_vraboten()}">ime</td>
+    <td th:text="${document[0].getPrezime_vraboten()}">prezime</td>
+    <td th:text="${document[0].getIme_oddel()}">oddel</td>
+    <td th:text="${document[0].getDostaveni_dokumenti_na_vraboteniot_vo_oddelot()}">vkupno</td>
+    <td th:text="${document[0].getRealizirani_baranja_od_vraboteniot_vo_oddelot()}">realizirano</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Клиент</th>
+        <th>Предмет на документот</th>
+        <th>Датум доставен</th>
+        <th>Последна промена</th>
+        <th>Статус</th>
+        <th>Прикажи повеќе</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc: ${zadadeni}" style="margin-bottom: 5px">
+        <td th:text="${doc.getIme()}">Клиент</td>
+        <td th:text="${doc.getPredmet_na_dokument()}">Предмет на документот</td>
+        <td th:inline="text">
+            [[${doc.getDatum_primen}]]
+            <small th:text="${doc.getDatum_primenDen()}"></small>
+        </td>
+        <td th:inline="text">
+            [[${doc.getPosledna_napravena_promena()}]]
+            <small th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
+        </td>
+        <td th:text="${doc.getStatus_dokument()}" class="statusCode">Статус</td>
+        <td><a th:href="@{'/document/employee/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; color: black" >Прикажи повеќе</a></td>
+    </tr>
+    </tbody>
+</table>
+
 
 
 

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 
 @Controller
-@RequestMapping(name = "Document controller", value = "/document/{id}")
+@RequestMapping(name = "Document controller", value = "/document")
 public class DetailedViewDocument {
 
     private final detailedView_docService detailedView_docService;
@@ -25,12 +25,21 @@ public class DetailedViewDocument {
         this.promeniVoCelPeriodService = promeniVoCelPeriodService;
     }
 
-    @GetMapping
-    public String getDetaildViewDoc(Model model, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp){
+    @GetMapping("/{id}")
+    public String getDetaildViewDocClient(Model model, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp){
         String client = (String) req.getSession().getAttribute("client");
         model.addAttribute("cel_period", promeniVoCelPeriodService.filterCelPeriodPromeniByClient(client));
         model.addAttribute("DetailedViewDocument", detailedView_docService.findAllbyDocument_Id(id));
 
         return "Detailed_View_Document";
     }
+
+    @GetMapping("/employee/{id}")
+    public String getDetaildViewDocEmployee(Model model, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp){
+
+      model.addAttribute("DetailedViewDocument", detailedView_docService.findAllbyDocument_Id(id));
+      return "Detailed_View_DocumentEmployee";
+    }
+
+
 }

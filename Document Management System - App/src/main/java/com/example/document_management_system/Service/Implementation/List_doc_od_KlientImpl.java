@@ -36,4 +36,16 @@ public class List_doc_od_KlientImpl implements List_doc_odKlientService {
             return getDocumentsFromClient(Integer.parseInt(client));
         }
     }
+
+    @Override
+    public List<Lista_doc_odKlient> findAllbyEmployee(String employee) {
+        Integer id_vraboten = Integer.parseInt(employee);
+        return list_doc_odKlientRepository.findAllbyEmployee(id_vraboten);
+    }
+
+    @Override
+    public List<String> findAllclientsbyEmployee(String employee) {
+        Integer id_vraboten = Integer.parseInt(employee);
+        return list_doc_odKlientRepository.findAllclientsbyEmployee(id_vraboten);
+    }
 }
