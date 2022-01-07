@@ -7,7 +7,9 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "dokument")
 public class dokument {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_dokument;
     @ManyToOne
     @JoinColumn(name="id_klient", nullable = false)
@@ -18,4 +20,9 @@ public class dokument {
     private String tip_na_dokument;
     private String predmet_na_dokument;
     private LocalDateTime datum_primen;
+    private byte[] content;
+
+
+
+
 }

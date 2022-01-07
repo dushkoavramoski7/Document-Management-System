@@ -13,14 +13,11 @@ import java.util.List;
 public interface List_doc_odKlientRepository extends JpaRepository<Lista_doc_odKlient, Integer> {
 
     // prikaz samo za vrabotenite
-    @Override
+    @Query("select a from Lista_doc_odKlient as a order by a.ime")
     List<Lista_doc_odKlient> findAll();
 
     //zemi lista od dokumenti prateni od daden klient so id = id_klient
     @Query("select a from Lista_doc_odKlient as a where a.id_klient = :id_klient")
-    List<Lista_doc_odKlient> getDocumentsFromClient(@Param("id_klient") Integer id_klient );
-
-
-
+    List<Lista_doc_odKlient> getDocumentsFromClient(@Param("id_klient") Integer id_klient);
 
 }

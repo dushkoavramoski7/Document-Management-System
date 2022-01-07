@@ -2,6 +2,7 @@ package com.example.document_management_system.Model.Views;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.time.Month;
 
 @Entity
 @Table(name = "promeni_vo_tekoven_mesec", schema = "dms_project", catalog = "Document Managment System - Project BNP")
@@ -37,6 +38,9 @@ public class PromeniVoTekovenMesec {
 
     public BigInteger getTekovenMesec() {
         return tekovenMesec;
+    }
+    public String Month(){   // tekoven mesec vo string JAVA 8
+        return Month.of(tekovenMesec.intValue()).name();
     }
 
     public BigInteger getTekovnaGodina() {

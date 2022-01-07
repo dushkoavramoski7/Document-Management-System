@@ -6,12 +6,16 @@ import org.hibernate.annotations.Immutable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Immutable
 @Table(name="detialview_document")
 public class detailedView_doc {
+    private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+
     private int id_dokument;
     private int id_klient;
     private LocalDateTime datum_primen;
@@ -51,11 +55,16 @@ public class detailedView_doc {
         return id_rekord;
     }
 
-    public LocalDateTime getDatum_promena() {
-        return datum_promena;
+    public String getDatum_promena() {
+        return  DateTimeFormatter.ofPattern(DATE_FORMATTER).format(datum_promena);
     }
-
+    public DayOfWeek getDatum_promenaDen()
+    {
+        return datum_promena.getDayOfWeek();
+    }
     public String getStatus_dokument() {
         return status_dokument;
     }
+
+
 }

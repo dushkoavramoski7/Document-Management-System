@@ -4,60 +4,150 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
+
     <title>Documents from client</title>
   </head>
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif
+    }
+    table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table td, table th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table tr:nth-child(even){background-color: #f2f2f2;}
+
+    table tr:hover {background-color: #ddd;}
+
+    table th{
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: rgb(119, 136, 153);
+      color: white;
+    }
+    .doc_bymonth_year th{
+      background-color: rgba(119, 136, 153, 0.7);
+    }
+    small{
+      display: block;
+    }
+    button {
+      float: left;
+      display: inline-block;
+      padding: 10px;
+      background: lightslategray;
+      border: none;
+      margin-bottom: 20px;
+      color: white;
+      cursor: pointer
+    }
+    select{
+      padding: 10px;
+      background:lightslategray;
+      border:none;
+      margin-bottom: 20px;
+      color: white;
+      cursor: pointer
+    }
+    input{
+      padding: 10px;
+      background:lightslategray;
+      border:none;
+      margin-bottom: 20px;
+      color: white;
+      cursor: pointer
+    }
+
+  </style>
   <body>
-  
+  <form th:method="GET" th:action="@{/upload}" th:if="${client != '0'} and ${client != null}">
+    <input type="submit" value="Внеси документ" style="float: left"/>
+  </form>
 
-  <div class="content">
-    
-    <div class="container">
-      <h2 class="mb-5">Листа на документи од клиент</h2>
-
-      <div class="table-responsive">
-
-        <table class="table custom-table">
+  <table class="doc_bymonth_year">
+    <thead>
+    <tr>
+      <th>Месец</th>
+      <th>Година</th>
+      <th>Вкупно поднесени документи</th>
+      <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
+      <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
+      <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
+      <th>Поднесено барање<br> <span style="font-size: 10px">статус</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc: ${promeni}" style="margin-bottom: 5px">
+      <td th:text="${doc.Month()}">Месец</td>
+      <td th:text="${doc.getGodina()}">Година  </td>
+      <td th:text="${doc.getVkupnoDostaveniDokuemntiVoMesecot()}">Вкупно</td>
+      <td th:text="${doc.getRealiziraniBaranja()}">Реализирани</td>
+      <td th:text="${doc.getDokumentiVoObrabotka()}">Во обработка</td>
+      <td th:text="${doc.getDostavenOdgovorNaBaranjeto()}">Доставен одговор</td>
+      <td th:text="${doc.getPodneseniBaranja()}">Поднесени барања</td>
+    </tr>
+    </tbody>
+  </table>
+  <table  class="doc_bymonth_year" style="margin-bottom: 20px">
+    <thead>
+    <tr>
+      <th><span style="font-size: 13px">Тековен</span><br>месец</th>
+      <th><span style="font-size: 13px">Тековенa</span> <br>година</th>
+      <th>Вкупно поднесени документи</th>
+      <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
+      <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
+      <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
+      <th>Поднесено барање<br> <span style="font-size: 10px">статус</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc: ${tekovni_promeni}" style="margin-bottom: 5px">
+      <td th:text="${doc.Month()}">Месец</td>
+      <td th:text="${doc.getTekovnaGodina()}">Година</td>
+      <td th:text="${doc.getDostaveniDokuemntiVoTekovenMesec()}">Вкупно</td>
+      <td th:text="${doc.getRealiziraniBaranja()}">Реализирани</td>
+      <td th:text="${doc.getDokumentiVoObrabotka()}">Во обработка</td>
+      <td th:text="${doc.getDostavenOdgovor()}">Доставен одговор</td>
+      <td th:text="${doc.getPodneseniBaranja()}">Поднесени барања</td>
+    </tr>
+    </tbody>
+  </table>
+        <table>
           <thead>
             <tr>
-              <th scope="col">Предмет на документот</th>
-              <th scope="col">Датум примен</th>
-              <th scope="col">Последна направена промена</th>
-              <th scope="col">Статус</th>
-              <th scope="col">Прикажи повеќе</th>
+              <th>Клиент</th>
+              <th>Предмет на документот</th>
+              <th>Датум доставен</th>
+              <th>Последна промена</th>
+              <th>Статус</th>
+              <th>Прикажи повеќе</th>
             </tr>
           </thead>
           <tbody>
-            <tr scope="row" th:each="doc: ${list_dokuemts_klient}">
+            <tr th:each="doc: ${list_dokuemts_klient}" style="margin-bottom: 5px">
+              <td th:text="${doc.getIme()}">Клиент</td>
               <td th:text="${doc.getPredmet_na_dokument()}">Предмет на документот</td>
               <td th:inline="text">
                 [[${doc.getDatum_primen}]]
-                <small class="d-block" th:text="${doc.getDatum_primenDen()}"></small>
+                <small th:text="${doc.getDatum_primenDen()}"></small>
               </td>
               <td th:inline="text">
                 [[${doc.getPosledna_napravena_promena()}]]
-                <small class="d-block" th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
+                <small th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
               </td>
-              <td th:text="${doc.getStatus_dokument()}">Статус</td>
-              <td>Прикажи повеќе</td>
+              <td th:text="${doc.getStatus_dokument()}" class="statusCode">Статус</td>
+              <td><a th:href="@{'/document/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; color: black" >Прикажи повеќе</a></td>
             </tr>
           </tbody>
         </table>
-      </div>
 
-
-    </div>
-
-  </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
   </body>
 </html>

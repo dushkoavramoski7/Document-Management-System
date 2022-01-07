@@ -2,7 +2,7 @@
 <html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Title</title>
 </head>
 <style>
     body{
@@ -73,12 +73,16 @@
     </select>
 </form>
 
-<form th:method="POST" th:action="@{/home/employee}" style="display: inline-block; float: right; margin-right: 10px">
-    <select name="employee"  onchange="this.form.submit();" >
-        <option value="" selected disabled hidden>-- Select emplyee -- </option>
-        <option th:each="vraboten : ${vraboteni}" th:value="${vraboten.getId_vraboten()}" th:text="${vraboten.getIme_vraboten() + ' ' + vraboten.getPrezime_vraboten()} " name="employee"></option>
-    </select>
-</form>
+<h1 th:text="${employee}"> </h1>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

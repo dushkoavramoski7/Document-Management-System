@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class detailedView_logImpl implements detailedView_logService {
+
     private final detailedView_logRepository detailedView_logRepository;
 
     public detailedView_logImpl(com.example.document_management_system.Repository.jpa.detailedView_logRepository detailedView_logRepository) {

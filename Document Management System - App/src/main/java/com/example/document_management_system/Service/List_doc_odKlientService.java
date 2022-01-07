@@ -10,5 +10,7 @@ public interface List_doc_odKlientService {
 
     public List<Lista_doc_odKlient> getDocumentsFromClient(Integer id_klient);
 
+    public  List<Lista_doc_odKlient> filterDocumentsByClinet(String client);
+
 
 }

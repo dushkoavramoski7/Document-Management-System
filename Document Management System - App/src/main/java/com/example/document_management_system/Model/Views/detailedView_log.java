@@ -30,7 +30,7 @@ public class detailedView_log {
     private int id_vraboten;
     private String ime_vraboten;
     private String prezime_vraboten;
-    private char id_oddel;
+    private String id_oddel;
     private String ime_oddel;
 
     public int getId_rekord() {
@@ -101,7 +101,7 @@ public class detailedView_log {
         return prezime_vraboten;
     }
 
-    public char getId_oddel() {
+    public String getId_oddel() {
         return id_oddel;
     }
 

@@ -4,6 +4,7 @@ import com.example.document_management_system.Model.Composite_Primary_Keys.Klien
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.time.Month;
 
 @Entity
 @Table(name = "promeni_grupirani_po_mesec_godina", schema = "dms_project", catalog = "Document Managment System - Project BNP")
@@ -45,7 +46,9 @@ public class PromeniGrupiraniPoMesecGodina {
     public BigInteger getMesec() {
         return mesec;
     }
-
+    public String Month(){   // mesec vo string JAVA
+        return Month.of(mesec.intValue()).name();
+    }
     public BigInteger getGodina() {
         return godina;
     }

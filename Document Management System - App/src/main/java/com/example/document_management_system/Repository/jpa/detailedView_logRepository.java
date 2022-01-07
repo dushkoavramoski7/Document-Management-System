@@ -10,12 +10,11 @@ import java.util.List;
 
 
 @Repository
-public interface detailedView_logRepository extends JpaRepository<detailedView_log,Integer > {
+public interface detailedView_logRepository extends JpaRepository<detailedView_log, Integer> {
 
     // prikaz samo za vrabotenite
     @Override
     List<detailedView_log> findAll();
-
 
     //zemi select za daden id na rekord
     @Query("select a from detailedView_log as a where a.id_rekord = :id_rekord")

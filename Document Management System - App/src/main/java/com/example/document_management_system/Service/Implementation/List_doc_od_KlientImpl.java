@@ -24,4 +24,16 @@ public class List_doc_od_KlientImpl implements List_doc_odKlientService {
     public List<Lista_doc_odKlient> getDocumentsFromClient(Integer id_klient) {
         return list_doc_odKlientRepository.getDocumentsFromClient(id_klient);
     }
+
+    @Override
+    public List<Lista_doc_odKlient> filterDocumentsByClinet(String client) {
+
+        if (client == null || Integer.parseInt(client)==0)
+        {
+            return findAll();
+        }
+        else {
+            return getDocumentsFromClient(Integer.parseInt(client));
+        }
+    }
 }

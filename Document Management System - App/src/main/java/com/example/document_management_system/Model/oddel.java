@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class oddel {
 
     @Id
-    private char  id_oddel;
+    private String  id_oddel;
     private String ime_oddel;
 
 }
