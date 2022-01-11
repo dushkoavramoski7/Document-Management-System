@@ -16,12 +16,6 @@ public class detailedView_logImpl implements detailedView_logService {
         this.detailedView_logRepository = detailedView_logRepository;
     }
 
-
-    @Override
-    public List<detailedView_log> findAll() {
-        return detailedView_logRepository.findAll();
-    }
-
     @Override
     public detailedView_log findById_rekord(Integer id_rekord) {
         return detailedView_logRepository.findById_rekord(id_rekord);

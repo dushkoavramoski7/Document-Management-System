@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Documents from client</title>
   </head>
@@ -68,16 +69,20 @@
 
   </style>
   <body>
-  <form th:method="GET" th:action="@{/upload}" th:if="${client != '0'} and ${client != null}">
-    <input type="submit" value="Внеси документ" style="float: left"/>
+
+  <a href="/home" style="text-decoration:none;float:left; margin-left: 20px; margin-top: 15px; margin-bottom: 10px ;text-decoration: none;  font-weight: bold">Home</a>
+  <th:block sec:authorize="hasRole('ROLE_USER')">
+  <form th:method="GET" th:action="@{'/document/addDocument/{client}' (client = ${list_dokuemts_klient[0].getId_klient()})}" style="margin-top: 10px; margin-right: 10px">
+    <input type="submit" value="Внеси документ" style="float: right"/>
   </form>
+  </th:block>
 
   <table class="doc_bymonth_year">
     <thead>
     <tr>
       <th>Месец</th>
       <th>Година</th>
-      <th>Вкупно поднесени документи</th>
+      <th>Поднесени документи</th>
       <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
       <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
       <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
@@ -101,7 +106,7 @@
     <tr>
       <th><span style="font-size: 13px">Тековен</span><br>месец</th>
       <th><span style="font-size: 13px">Тековенa</span> <br>година</th>
-      <th>Вкупно поднесени документи</th>
+      <th>Поднесени документи</th>
       <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
       <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
       <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
@@ -144,7 +149,7 @@
                 <small th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
               </td>
               <td th:text="${doc.getStatus_dokument()}" class="statusCode">Статус</td>
-              <td><a th:href="@{'/document/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; color: black" >Прикажи повеќе</a></td>
+              <td><a th:href="@{'/document/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; font-weight: bold; " >Прикажи повеќе</a></td>
             </tr>
           </tbody>
         </table>

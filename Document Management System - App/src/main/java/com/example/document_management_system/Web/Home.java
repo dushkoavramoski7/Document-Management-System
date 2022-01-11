@@ -7,66 +7,60 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(name = "List documents controller", value = "/home")
-public class ListDocuments {
+public class Home {
     private final List_doc_odKlientService list_doc_odKlientService;
     private final ListaKlientiService listaKlientiService;
     private final PromeniGrupiraniPoMesecService promeniGrupiraniPoMesecService;
     private final PromeniVoTekovenMesecService promeniVoTekovenMesecService;
-    private final VrabotenService vrabotenService;
     private final Vraboten_kolku_doc_uspesno_realiziralService vraboten_kolku_doc_uspesno_realiziralService;
+    private final VrabotenKolkuRnsPromenilService vrabotenKolkuRnsPromenilService;
 
-
-    public ListDocuments(List_doc_odKlientService list_doc_odKlientService, ListaKlientiService listaKlientiService, PromeniGrupiraniPoMesecService promeniGrupiraniPoMesecService, PromeniVoTekovenMesecService promeniVoTekovenMesecService, VrabotenService vrabotenService, Vraboten_kolku_doc_uspesno_realiziralService vraboten_kolku_doc_uspesno_realiziralService) {
+    public Home(List_doc_odKlientService list_doc_odKlientService, ListaKlientiService listaKlientiService, PromeniGrupiraniPoMesecService promeniGrupiraniPoMesecService, PromeniVoTekovenMesecService promeniVoTekovenMesecService, Vraboten_kolku_doc_uspesno_realiziralService vraboten_kolku_doc_uspesno_realiziralService, VrabotenKolkuRnsPromenilService vrabotenKolkuRnsPromenilService) {
         this.list_doc_odKlientService = list_doc_odKlientService;
         this.listaKlientiService = listaKlientiService;
         this.promeniGrupiraniPoMesecService = promeniGrupiraniPoMesecService;
         this.promeniVoTekovenMesecService = promeniVoTekovenMesecService;
-        this.vrabotenService = vrabotenService;
         this.vraboten_kolku_doc_uspesno_realiziralService = vraboten_kolku_doc_uspesno_realiziralService;
+        this.vrabotenKolkuRnsPromenilService = vrabotenKolkuRnsPromenilService;
     }
 
-    @GetMapping
-    public String getHomePage(Model model, HttpServletRequest req, HttpServletResponse resp)
+    @GetMapping("/home")
+    public String getHomePageAll(Model model, HttpServletRequest req, HttpServletResponse resp)
     {
         model.addAttribute("clients", listaKlientiService.findAll());
         model.addAttribute("vraboteni", vraboten_kolku_doc_uspesno_realiziralService.findAll());
         return "Home";
     }
 
-    @PostMapping("/client")
-    public String getHomePagePostClient(Model model, HttpServletRequest req, HttpServletResponse resp) {
+    @GetMapping("/client")
+    public String getHomePageClient(@RequestParam Integer client ,Model model, HttpServletRequest req, HttpServletResponse resp) {
 
-
-        String client = req.getParameter("client"); // sesija za klient
-        HttpSession httpSession = req.getSession(); // ako postoi sesija ja zema, ako ne, ja kreira
+        HttpSession httpSession = req.getSession();
         httpSession.setAttribute("client", client);
 
         model.addAttribute("list_dokuemts_klient", list_doc_odKlientService.filterDocumentsByClinet(client));
-        model.addAttribute("clients", listaKlientiService.findAll());
         model.addAttribute("promeni", promeniGrupiraniPoMesecService.filterByMonthYear(client));
         model.addAttribute("tekovni_promeni", promeniVoTekovenMesecService.filterTekovniPromeniByClient(client));
-        model.addAttribute("client", client);
         return "ListDocuments";
     }
 
-    @PostMapping("/employee")
-    public String getHomePagePostEmployee(Model model, HttpServletRequest req, HttpServletResponse resp)
+    @GetMapping("/employee")
+    public String getHomePageEmployee(@RequestParam Integer employee, Model model, HttpServletRequest req, HttpServletResponse resp)
     {
 
-        String employee = req.getParameter("employee"); // sesija za klient
-        HttpSession httpSession = req.getSession(); // ako postoi sesija ja zema, ako ne, ja kreira
+        HttpSession httpSession = req.getSession();
         httpSession.setAttribute("employee", employee);
 
         model.addAttribute("clients", list_doc_odKlientService.findAllclientsbyEmployee(employee));
-        model.addAttribute("employee", employee);
         model.addAttribute("document", vraboten_kolku_doc_uspesno_realiziralService.findbyId(employee));
+        model.addAttribute("rns_promeneti", vrabotenKolkuRnsPromenilService.findAllByIdVraboten(employee) );
         model.addAttribute("zadadeni", list_doc_odKlientService.findAllbyEmployee(employee));
         return  "ListDocumentsEmployee";
     }

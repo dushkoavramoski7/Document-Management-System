@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface Vraboten_kolku_doc_uspesno_realiziralService {
 
-    public List<Vraboten_kolku_doc_uspesno_realiziral> findbyId(String employee);
+    public List<Vraboten_kolku_doc_uspesno_realiziral> findbyId(Integer employee);
 
 
     public List<Vraboten_kolku_doc_uspesno_realiziral> findAll();

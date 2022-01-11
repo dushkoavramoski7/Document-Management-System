@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <style>
     body{
@@ -27,11 +28,10 @@
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: rgb(119, 136, 153);
-        color: white;
+
     }
     .doc_bymonth_year th{
-        background-color: rgba(119, 136, 153, 0.7);
+        background-color: whitesmoke;
     }
     small{
         display: block;
@@ -48,25 +48,25 @@
     }
     select{
         padding: 10px;
-        background:lightslategray;
+        background:gainsboro;
         border:none;
         margin-bottom: 20px;
-        color: white;
         cursor: pointer
     }
     input{
         padding: 10px;
-        background:lightslategray;
+        background: gainsboro;
         border:none;
         margin-bottom: 20px;
-        color: white;
         cursor: pointer
     }
 
 </style>
 <body>
 
-<form th:method="POST" th:action="@{/home/client}" style="display: inline-block; float: right">
+<a href="/home" style="float:left; margin-left: 20px; margin-top: 20px; text-decoration: none;  font-weight: bold">Home</a>
+
+<form th:method="get" th:action="@{/client}" style="display: inline-block; float: right; margin-top: 10px">
     <select name="client"  onchange="this.form.submit();" >
         <option value="" selected disabled hidden>-- Select client -- </option>
         <option th:each="client : ${clients}" th:value="${client.charAt(0)}" th:text="${client.substring(2, client.length())}" name="client"></option>
@@ -82,6 +82,7 @@
     <th>Оддел</th>
     <th>Вкупно доставени документи <br> <span style="font-size: 10px">на вработениот</span></th>
     <th>Реализирани документи <br> <span style="font-size: 10px">од вработениот</span></th>
+    <th>Извршена промена <br> <span style="font-size: 10px">врз рекорди на следење</span></th>
 </tr>
 </thead>
 <tbody>
@@ -91,6 +92,7 @@
     <td th:text="${document[0].getIme_oddel()}">oddel</td>
     <td th:text="${document[0].getDostaveni_dokumenti_na_vraboteniot_vo_oddelot()}">vkupno</td>
     <td th:text="${document[0].getRealizirani_baranja_od_vraboteniot_vo_oddelot()}">realizirano</td>
+    <td th:text="${rns_promeneti[0].getIzvrsenaPromenaVrzRekordiNaSledenje()}"></td>
 </tr>
 </tbody>
 </table>
@@ -119,7 +121,7 @@
             <small th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
         </td>
         <td th:text="${doc.getStatus_dokument()}" class="statusCode">Статус</td>
-        <td><a th:href="@{'/document/employee/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; color: black" >Прикажи повеќе</a></td>
+        <td><a th:href="@{'/document/employee/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; font-weight: bold; " >Прикажи повеќе</a></td>
     </tr>
     </tbody>
 </table>

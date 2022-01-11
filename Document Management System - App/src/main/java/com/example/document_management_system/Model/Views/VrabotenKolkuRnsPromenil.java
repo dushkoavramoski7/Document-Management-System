@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "vraboten_kolku_rns_promenil", schema = "dms_project", catalog = "Document Managment System - Project BNP")
 public class VrabotenKolkuRnsPromenil {
     @Id
+    @Column(name = "id_vraboten")
+    private int id_vraboten;
     @Column(name = "ime_vraboten")
     private String imeVraboten;
     @Column(name = "prezime_vraboten")

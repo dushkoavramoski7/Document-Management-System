@@ -21,13 +21,13 @@ public class PromeniVoTekovenMesecImpl implements PromeniVoTekovenMesecService {
         return promeniVoTekovenMesecRepository.findAllByClient(id_klient);
     }
 
-    public List<PromeniVoTekovenMesec> filterTekovniPromeniByClient(String client){
-        if (client == null || Integer.parseInt(client)==0)
+    public List<PromeniVoTekovenMesec> filterTekovniPromeniByClient(Integer client){
+        if (client == null || client==0)
         {
             return promeniVoTekovenMesecRepository.findAll();
         }
         else {
-            return findAllByClient(Integer.parseInt(client));
+            return findAllByClient(client);
         }
     }
 

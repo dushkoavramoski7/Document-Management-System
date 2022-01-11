@@ -7,4 +7,6 @@ import java.util.List;
 public interface VrabotenService {
 
     public List<vraboten> findAll();
+
+    public List<vraboten> findAllByOddel(String oddel);
 }

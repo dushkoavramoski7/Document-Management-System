@@ -18,10 +18,8 @@ public class Vraboten_kolku_doc_uspesno_realiziralImpl implements Vraboten_kolku
 
 
     @Override
-    public List<Vraboten_kolku_doc_uspesno_realiziral> findbyId(String employee) {
-
-        Integer id_vraboten = Integer.parseInt(employee);
-        return vraboten_kolku_doc_uspesno_realiziralRepository.findAllById(id_vraboten);
+    public List<Vraboten_kolku_doc_uspesno_realiziral> findbyId(Integer employee) {
+        return vraboten_kolku_doc_uspesno_realiziralRepository.findAllById(employee);
     }
 
     @Override

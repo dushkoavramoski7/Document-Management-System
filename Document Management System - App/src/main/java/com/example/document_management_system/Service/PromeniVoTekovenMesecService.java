@@ -8,5 +8,5 @@ public interface PromeniVoTekovenMesecService {
 
     public List<PromeniVoTekovenMesec> findAllByClient(Integer id_klient);
 
-    public List<PromeniVoTekovenMesec> filterTekovniPromeniByClient(String client);
+    public List<PromeniVoTekovenMesec> filterTekovniPromeniByClient(Integer client);
 }

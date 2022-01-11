@@ -26,26 +26,25 @@ public class List_doc_od_KlientImpl implements List_doc_odKlientService {
     }
 
     @Override
-    public List<Lista_doc_odKlient> filterDocumentsByClinet(String client) {
+    public List<Lista_doc_odKlient> filterDocumentsByClinet(Integer client) {
 
-        if (client == null || Integer.parseInt(client)==0)
+        if (client == null || client==0)
         {
             return findAll();
         }
         else {
-            return getDocumentsFromClient(Integer.parseInt(client));
+            return getDocumentsFromClient(client);
         }
     }
 
     @Override
-    public List<Lista_doc_odKlient> findAllbyEmployee(String employee) {
-        Integer id_vraboten = Integer.parseInt(employee);
-        return list_doc_odKlientRepository.findAllbyEmployee(id_vraboten);
+    public List<Lista_doc_odKlient> findAllbyEmployee(Integer employee) {
+
+        return list_doc_odKlientRepository.findAllbyEmployee(employee);
     }
 
     @Override
-    public List<String> findAllclientsbyEmployee(String employee) {
-        Integer id_vraboten = Integer.parseInt(employee);
-        return list_doc_odKlientRepository.findAllclientsbyEmployee(id_vraboten);
+    public List<String> findAllclientsbyEmployee(Integer employee) {
+        return list_doc_odKlientRepository.findAllclientsbyEmployee(employee);
     }
 }

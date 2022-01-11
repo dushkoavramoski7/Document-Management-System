@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new log for document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<style>
+    h1{
+        color: gray;
+    }
+    body{
+        font-family: Arial, Helvetica, sans-serif
+    }
+    #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 75%;
+    }
+    #form{
+        position: fixed;
+        margin-top: 130px;
+        margin-left: 198px;
+        width: 70%;
+        height: 80%;
+        background-color:  white;
+    }
+
+</style>
+<body>
+<div id="background">
+
+    <div id="form">
+        <h3 style="text-align: center"> Форма за креирање на рекорд на следење</h3>
+        <h1 style="text-align: center" th:text="'Внеси нов рекорд на следење за документ:' + ' ' + ${Dokument_id}"></h1>
+        <form action="/document/add-record" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="id_dokument" name="id_dokument" th:value="${Dokument_id}">
+            <input type="hidden" id="id_klient" name="id_klient" th:value="${Klient_id}">
+            <input type="hidden" id="id_vraboten" name="id_vraboten" th:value="${Vraboten_id}">
+
+            <br>
+            <br>
+
+                <select name="status" class="custom-select custom-select-lg mb-3" id="status">
+                    <option selected hidden disabled>Одбери статус</option>
+                    <option>Vo obrabotka</option>
+                    <option>Realizirano</option>
+                    <option>Dostaven odgovor</option>
+                    <option>Podneseno baranje</option>
+                </select>
+            <div class="mb-3">
+                <label for="file" class="form-label">Одговор документ</label>
+                <input class="form-control" type="file" id="file" name="file">
+            </div>
+
+                <div class="form-group row">
+                    <label for="komentar" class="col-sm-2 col-form-label">Внеси коментар:</label>
+                    <div class="col-sm-10">
+                    <input class="form-control" type="text" id="komentar" name="komentar" placeholder="коментар">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="promena" class="col-sm-2 col-form-label">Внеси промена: </label>
+                    <div class="col-sm-10">
+                    <input class="form-control" type="text" id="promena" name="promena" placeholder="промена">
+                    </div>
+                </div>
+
+
+            <button class="btn btn-primary" type="submit">Submit form</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

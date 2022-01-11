@@ -28,18 +28,13 @@ public class PromeniGrupiraniPoMesecImpl implements PromeniGrupiraniPoMesecServi
     }
 
     @Override
-    public List<PromeniGrupiraniPoMesecGodina> findAllByClientAndMonthYear(Integer id_klient, BigInteger mesec, BigInteger godina) {
-        return promeniGrupiraniPoMesecRepository.findAllByClientAndMonthYear(id_klient, mesec, godina);
-    }
-
-    @Override
-    public List<PromeniGrupiraniPoMesecGodina> filterByMonthYear(String client) {
-         if (client == null || Integer.parseInt(client)==0)
+    public List<PromeniGrupiraniPoMesecGodina> filterByMonthYear(Integer client) {
+         if (client == null || client==0)
         {
             return findAll();
         }
         else {
-            return findAllByClient(Integer.parseInt(client));
+            return findAllByClient(client);
         }
     }
 }
