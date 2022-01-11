@@ -121,7 +121,7 @@
             <small th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
         </td>
         <td th:text="${doc.getStatus_dokument()}" class="statusCode">Статус</td>
-        <td><a th:href="@{'/document/employee/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; font-weight: bold; " >Прикажи повеќе</a></td>
+        <td style="text-align: center"><a th:href="@{'/document/employee/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; font-weight: bold;"  class="btn btn-primary btn-sm" role="button">Прикажи повеќе</a></td>
     </tr>
     </tbody>
 </table>

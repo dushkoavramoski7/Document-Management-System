@@ -130,6 +130,7 @@
             <tr>
               <th>Клиент</th>
               <th>Предмет на документот</th>
+              <th>Оддел</th>
               <th>Датум доставен</th>
               <th>Последна промена</th>
               <th>Статус</th>
@@ -140,6 +141,7 @@
             <tr th:each="doc: ${list_dokuemts_klient}" style="margin-bottom: 5px">
               <td th:text="${doc.getIme()}">Клиент</td>
               <td th:text="${doc.getPredmet_na_dokument()}">Предмет на документот</td>
+              <td th:text="${doc.getIme_oddel()}">Оддел</td>
               <td th:inline="text">
                 [[${doc.getDatum_primen}]]
                 <small th:text="${doc.getDatum_primenDen()}"></small>

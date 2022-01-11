@@ -18,8 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        // TODO: If you are implementing the security requirements, remove this following line
-        //web.ignoring().antMatchers("/**");
+
         http.headers().defaultsDisabled().cacheControl();
         http.csrf().disable()
                 .authorizeRequests()
@@ -34,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
+
     }
 
     @Override

@@ -27,7 +27,9 @@
         height: 100%;
         background-color:  white;
     }
-
+    label{
+        font-weight: bold;
+    }
 </style>
 <body>
 <div id="background">
@@ -68,7 +70,7 @@
             <label for="dos">Датум кога е доставен документот од клиентот:</label>
             <input name="dos" id="dos" class="form-control" type="text" th:placeholder="${#temporals.format(Log.getDatum_primen(), 'dd-MM-yyyy HH:mm')}" readonly>
         </div>
-        <span>Доставен одговор од вработен:  </span><a th:href="@{'/document/downloadFile/response/{id}' (id = ${Log.getId_rekord()})}" th:text="${Log.getOdgovor_file()}"></a>
+        <span>Доставен одговор од вработен:  </span><span th:if="${Log.getOdgovor_file()} == null">нема доставен одговор</span><a th:href="@{'/document/downloadFile/response/{id}' (id = ${Log.getId_rekord()})}" th:text="${Log.getOdgovor_file()}"></a>
         <br>
         <br>
         <div class="form-group">
@@ -92,18 +94,8 @@
             <label for="komentar">Оставен коментар од вработен: </label>
             <input name="status" id="komentar" class="form-control" type="text" th:placeholder="${Log.getKomentar()} ?: 'нема оставен коментар од вработен'" readonly>
         </div>
-
-
-
-
-
-
-
-
     </div>
 </div>
-
-
 
 </body>
 </html>

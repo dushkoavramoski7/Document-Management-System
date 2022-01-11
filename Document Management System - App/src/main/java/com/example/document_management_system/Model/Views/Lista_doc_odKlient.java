@@ -20,6 +20,7 @@ public class Lista_doc_odKlient {
     @Id
     private int id_klient;
     private int id_vraboten;
+    private String ime_oddel;
     private String ime;
     @Id
     private int id_dokument;
@@ -28,8 +29,16 @@ public class Lista_doc_odKlient {
     private LocalDateTime posledna_napravena_promena;
     private String status_dokument;
 
+    public Lista_doc_odKlient() {
+
+    }
+
     public int getId_vraboten() {
         return id_vraboten;
+    }
+
+    public String getIme_oddel() {
+        return ime_oddel;
     }
 
     public String getIme() {
