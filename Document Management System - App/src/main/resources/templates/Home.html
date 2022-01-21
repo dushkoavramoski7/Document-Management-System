@@ -56,12 +56,14 @@
     <div id="options">
         <div id="forms">
         <!--            odberi klient-->
+            <th:block sec:authorize="hasRole('ROLE_USER')">
         <form th:method="get" th:action="@{/client}" style="display: inline-block;">
             <select name="client"  onchange="this.form.submit();" >
                 <option value="" selected disabled hidden style="text-align: center">-- Select client -- </option>
                 <option th:each="client : ${clients}" th:value="${client.getIdKlient()}" th:text="${client.getIme()} + ' ' + (${client.getKompanija()} ?: '')" name="client"></option>
             </select>
         </form>
+            </th:block>
 
         <br>
 

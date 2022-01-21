@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Charts</title>
+</head>
+<body>
+
+
+<table class="doc_bymonth_year" style="margin-bottom: 20px">
+    <thead>
+    <tr>
+        <th>Вкупно поднесени документи
+            <br>од клиентот</th>
+        <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
+        <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
+        <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
+        <th>Поднесено барање<br> <span style="font-size: 10px">статус</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc: ${cel_period}" style="margin-bottom: 5px">
+        <td th:text="${doc.getVkupnoDostaveniDokuemnti()}">Вкупно</td>
+        <td th:text="${doc.getRealiziraniBaranja()}">Реализирани</td>
+        <td th:text="${doc.getDokumentiVoObrabotka()}">Во обработка</td>
+        <td th:text="${doc.getDostavenOdgovorNaBaranjeto()}">Доставен одговор</td>
+        <td th:text="${doc.getPodneseniBaranja()}">Поднесени барања</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="doc_bymonth_year">
+    <thead>
+    <tr>
+        <th>Месец</th>
+        <th>Година</th>
+        <th>Поднесени документи</th>
+        <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
+        <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
+        <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
+        <th>Поднесено барање<br> <span style="font-size: 10px">статус</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc: ${promeni}" style="margin-bottom: 5px">
+        <td th:text="${doc.Month()}">Месец</td>
+        <td th:text="${doc.getGodina()}">Година  </td>
+        <td th:text="${doc.getVkupnoDostaveniDokuemntiVoMesecot()}">Вкупно</td>
+        <td th:text="${doc.getRealiziraniBaranja()}">Реализирани</td>
+        <td th:text="${doc.getDokumentiVoObrabotka()}">Во обработка</td>
+        <td th:text="${doc.getDostavenOdgovorNaBaranjeto()}">Доставен одговор</td>
+        <td th:text="${doc.getPodneseniBaranja()}">Поднесени барања</td>
+    </tr>
+    </tbody>
+</table>
+<table  class="doc_bymonth_year" style="margin-bottom: 20px">
+    <thead>
+    <tr>
+        <th><span style="font-size: 13px">Тековен</span><br>месец</th>
+        <th><span style="font-size: 13px">Тековенa</span> <br>година</th>
+        <th>Поднесени документи</th>
+        <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
+        <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
+        <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
+        <th>Поднесено барање<br> <span style="font-size: 10px">статус</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc: ${tekovni_promeni}" style="margin-bottom: 5px">
+        <td th:text="${doc.Month()}">Месец</td>
+        <td th:text="${doc.getTekovnaGodina()}">Година</td>
+        <td th:text="${doc.getDostaveniDokuemntiVoTekovenMesec()}">Вкупно</td>
+        <td th:text="${doc.getRealiziraniBaranja()}">Реализирани</td>
+        <td th:text="${doc.getDokumentiVoObrabotka()}">Во обработка</td>
+        <td th:text="${doc.getDostavenOdgovor()}">Доставен одговор</td>
+        <td th:text="${doc.getPodneseniBaranja()}">Поднесени барања</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

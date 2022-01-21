@@ -1,6 +1,7 @@
 package com.example.document_management_system.Service.Implementation;
 
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Model.dokument;
 import com.example.document_management_system.Model.klient;
 import com.example.document_management_system.Model.rekord_na_sledenje;
@@ -43,7 +44,7 @@ public class RekordNaSledenjeImpl implements RekordNaSledenjeService {
     @Transactional
     public Optional<rekord_na_sledenje> save(Integer id_dokument, Integer id_klient, Integer id_vraboten,
                                              LocalDateTime datum_dostavuvanje, LocalDateTime datum_promena,
-                                             String status_dokument, String odgovor_file, String komentar,
+                                             DocumentStatus status_dokument, String odgovor_file, String komentar,
                                              String promena, MultipartFile file, String tip_na_dokument) throws Exception {
         dokument dokument_obj =  this.documentRepository.findById(id_dokument)
                 .orElseThrow(() -> new NoSuchElementException());

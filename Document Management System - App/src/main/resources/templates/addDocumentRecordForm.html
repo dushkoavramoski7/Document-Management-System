@@ -31,7 +31,9 @@
 
 </style>
 <body>
+
 <div id="background">
+    <button onclick="history.back()" role="button" class="btn btn-primary btn" style="float: left; margin-top: 15px; margin-left: 10px; font-weight: bolder">Go Back</button>
 
     <div id="form">
         <h3 style="text-align: center"> Форма за креирање на рекорд на следење</h3>
@@ -46,10 +48,7 @@
 
                 <select name="status" class="custom-select custom-select-lg mb-3" id="status">
                     <option selected hidden disabled>Одбери статус</option>
-                    <option>Vo obrabotka</option>
-                    <option>Realizirano</option>
-                    <option>Dostaven odgovor</option>
-                    <option>Podneseno baranje</option>
+                    <option th:each="status : ${statuses}" th:text="${status}" th:value="${status}"></option>
                 </select>
             <div class="mb-3">
                 <label for="file" class="form-label">Одговор документ</label>

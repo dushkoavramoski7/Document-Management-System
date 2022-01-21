@@ -32,6 +32,9 @@
     }
 </style>
 <body>
+
+<button onclick="history.back()" role="button" class="btn btn-primary btn" style="float: left; margin-top: -85px; margin-left: 10px; font-weight: bolder">Go Back</button>
+
 <div id="background">
 
     <div id="form">
@@ -63,14 +66,14 @@
             <label for="doc">Документ</label>
             <input name="doc" id="doc" class="form-control" type="text" th:placeholder="${Log.getPredmet_na_dokument()}" readonly>
         </div>
-        <span>Доставен фајл од клиентот:  </span><a th:href="@{'/document/downloadFile/{id}' (id = ${Log.getId_dokument()})}" th:text="${Log.getDostaven_file_od_klient()}"><img src="https://img.icons8.com/color/48/000000/document--v1.png"/></a>
+        <span>Доставен фајл од клиентот:  </span><span th:if="${Log.getDostaven_file_od_klient()} == null"> нема доставен документ од клиент</span><a th:href="@{'/document/downloadFile/{id}' (id = ${Log.getId_dokument()})}" th:text="${Log.getDostaven_file_od_klient()}" th:download="${Log.getDostaven_file_od_klient()}"></a>
         <br>
         <br>
         <div class="form-group">
             <label for="dos">Датум кога е доставен документот од клиентот:</label>
             <input name="dos" id="dos" class="form-control" type="text" th:placeholder="${#temporals.format(Log.getDatum_primen(), 'dd-MM-yyyy HH:mm')}" readonly>
         </div>
-        <span>Доставен одговор од вработен:  </span><span th:if="${Log.getOdgovor_file()} == null">нема доставен одговор</span><a th:href="@{'/document/downloadFile/response/{id}' (id = ${Log.getId_rekord()})}" th:text="${Log.getOdgovor_file()}"></a>
+        <span>Доставен одговор од вработен:  </span><span th:if="${Log.getOdgovor_file()} == null">нема доставен одговор</span><a th:href="@{'/document/downloadFile/response/{id}' (id = ${Log.getId_rekord()})}" th:text="${Log.getOdgovor_file()}" th:download="${Log.getOdgovor_file()}"></a>
         <br>
         <br>
         <div class="form-group">
@@ -79,7 +82,7 @@
         </div>
         <div class="form-group">
             <label for="status">Статус на документот</label>
-            <input name="status" id="status" class="form-control" type="text" th:placeholder="${Log.getStatus_dokument()}" readonly>
+            <input name="status" id="status" class="form-control" type="text" th:placeholder="${Log.getStatus_dokument().name()}" readonly>
         </div>
         <div class="form-group">
             <label for="dop">Датум кога е направена промената:</label>

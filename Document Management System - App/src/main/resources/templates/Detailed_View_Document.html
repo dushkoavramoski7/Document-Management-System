@@ -9,12 +9,15 @@
 <style>
     body{
         font-family: Arial, Helvetica, sans-serif;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     table {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
         width: 100%;
     }
+
 
     table td, table th {
         border: 1px solid #ddd;
@@ -23,49 +26,56 @@
 
     table tr:nth-child(even){background-color: #f2f2f2;}
 
-    table tr:hover {background-color: #ddd;}
+    table tr:hover { background-color: whitesmoke}
 
     table th{
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: rgb(119, 136, 153);
-        color: white;
+        background-color: gainsboro;
+        border: 1px solid whitesmoke;
     }
     .doc_bymonth_year th{
-        background-color: rgba(119, 136, 153, 0.7);
+        background-color: gainsboro;
     }
     small{
         display: block;
     }
+    button {
+        float: left;
+        display: inline-block;
+        padding: 10px;
+        background-color: gainsboro;
+        border: none;
+        margin-bottom: 20px;
+        color: white;
+        cursor: pointer
+    }
+    select{
+        padding: 10px;
+        background-color: gainsboro;
+        border:none;
+        margin-bottom: 20px;
+        color: white;
+        cursor: pointer
+    }
+    input{
+        padding: 10px;
+        border:none;
+        margin-bottom: 20px;
+        color: white;
+        cursor: pointer
+    }
+
 </style>
 <body>
 
-<table class="doc_bymonth_year" style="margin-bottom: 20px">
-    <thead>
-    <tr>
-        <th>Вкупно поднесени документи
-        <br>од клиентот</th>
-        <th>Реализирани <br> <span style="font-size: 10px">статус</span></th>
-        <th>Во обработка<br> <span style="font-size: 10px">статус</span></th>
-        <th>Доставен одговор<br> <span style="font-size: 10px">статус</span></th>
-        <th>Поднесено барање<br> <span style="font-size: 10px">статус</span></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="doc: ${cel_period}" style="margin-bottom: 5px">
-        <td th:text="${doc.getVkupnoDostaveniDokuemnti()}">Вкупно</td>
-        <td th:text="${doc.getRealiziraniBaranja()}">Реализирани</td>
-        <td th:text="${doc.getDokumentiVoObrabotka()}">Во обработка</td>
-        <td th:text="${doc.getDostavenOdgovorNaBaranjeto()}">Доставен одговор</td>
-        <td th:text="${doc.getPodneseniBaranja()}">Поднесени барања</td>
-    </tr>
-    </tbody>
-</table>
 <br>
 <br>
 
-<div class="form-row align-items-center" style="justify-content: center">
+
+<div class="form-row align-items-center" style="justify-content: center;">
+
     <div class="col-sm-3 my-1, form-group" style="text-align: center;">
         <label for="client">Клиент</label>
         <input id="client" type="text" class="form-control"  th:placeholder="${DetailedViewDocument[0].getIme()}" readonly>
@@ -80,7 +90,7 @@
     </div>
     <div class="col-sm-3 my-1, form-group" style="text-align: center;">
         <label for="stat" >Статус на документот: </label>
-        <input name="stat" id="stat" class="form-control" type="text" th:placeholder="${DetailedViewDocument[0].getStatus_dokument()}" readonly>
+        <input name="stat" id="stat" class="form-control" type="text" th:placeholder="${DetailedViewDocument[0].getStatus_dokument().name()}" readonly>
     </div>
 </div>
 <br>
@@ -88,7 +98,7 @@
             <table id="list_doc">
                 <thead>
                 <tr>
-                    <th scope="col">Датум промена</th>
+                    <th scope="col">Датум на промена на документот</th>
                     <th scope="col">Статус</th>
                     <th scope="col">Прикажи повеќе</th>
                 </tr>
@@ -99,7 +109,7 @@
                         [[${log.getDatum_promena()}]]
                         <small class="d-block" th:text="${log.getDatum_promenaDen()}"></small>
                     </td>
-                    <td th:text="${log.getStatus_dokument()}" class="statusCode">Статус</td>
+                    <td th:text="${log.getStatus_dokument().name()}" class="statusCode" style="text-align: center">Статус</td>
                     <td><a th:href="@{'/document/log/{id_log}' (id_log=${log.getId_rekord()})}" style="text-decoration: none; font-weight: bold; " >Прикажи повеќе</a></td>
 
                 </tr>

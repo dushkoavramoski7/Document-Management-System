@@ -1,6 +1,7 @@
 package com.example.document_management_system.Model;
 
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,14 +25,15 @@ public class rekord_na_sledenje {
     private LocalDateTime datum_dostavuvanje;
     private LocalDateTime datum_promena;
     @Column(nullable = false)
-    private String status_dokument;
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus status_dokument;
     private String odgovor_file;
     private String komentar;
     private String promena;
     private byte[] content;
     private String tip_na_dokument;
 
-    public rekord_na_sledenje(dokument id_dokument, klient id_klient, vraboten id_vraboten, LocalDateTime datum_dostavuvanje, LocalDateTime datum_promena, String status_dokument, String odgovor_file, String komentar, String promena, byte[] content, String tip_na_dokument) {
+    public rekord_na_sledenje(dokument id_dokument, klient id_klient, vraboten id_vraboten, LocalDateTime datum_dostavuvanje, LocalDateTime datum_promena, DocumentStatus status_dokument, String odgovor_file, String komentar, String promena, byte[] content, String tip_na_dokument) {
         this.id_dokument = id_dokument;
         this.id_klient = id_klient;
         this.id_vraboten = id_vraboten;
@@ -69,7 +71,7 @@ public class rekord_na_sledenje {
         return datum_promena;
     }
 
-    public String getStatus_dokument() {
+    public DocumentStatus getStatus_dokument() {
         return status_dokument;
     }
 

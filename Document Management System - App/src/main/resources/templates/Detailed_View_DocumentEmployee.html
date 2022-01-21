@@ -9,6 +9,8 @@
 <style>
   body{
     font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   table {
     font-family: Arial, Helvetica, sans-serif;
@@ -58,7 +60,7 @@
   </div>
   <div class="col-sm-3 my-1, form-group" style="text-align: center;">
     <label for="stat">Статус на документот: </label>
-    <input name="stat" id="stat" class="form-control" type="text" th:placeholder="${DetailedViewDocument[0].getStatus_dokument()}" readonly>
+    <input name="stat" id="stat" class="form-control" type="text" th:placeholder="${DetailedViewDocument[0].getStatus_dokument().name()}" readonly>
   </div>
 </div>
 <hr>
@@ -77,7 +79,7 @@
         [[${log.getDatum_promena()}]]
         <small class="d-block" th:text="${log.getDatum_promenaDen()}"></small>
       </td>
-      <td th:text="${log.getStatus_dokument()}" class="statusCode">Статус</td>
+      <td th:text="${log.getStatus_dokument().name()}" class="statusCode">Статус</td>
       <td><a th:href="@{'/document/log/{id_log}' (id_log=${log.getId_rekord()})}" style="text-decoration: none; font-weight: bold; " >Прикажи повеќе</a></td>
     </tr>
     </tbody>

@@ -1,6 +1,7 @@
 package com.example.document_management_system.Service;
 
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Model.rekord_na_sledenje;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +17,7 @@ public interface RekordNaSledenjeService {
                                              Integer id_vraboten,
                                              LocalDateTime datum_dostavuvanje,
                                              LocalDateTime datum_promena,
-                                             String status_dokument,
+                                             DocumentStatus status_dokument,
                                              String odgovor_file,
                                              String komentar,
                                              String promena,

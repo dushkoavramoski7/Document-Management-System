@@ -16,4 +16,6 @@ public interface DetailedView_docRepository extends JpaRepository<detailedView_d
     @Query("select a from detailedView_doc as a where a.id_dokument = :id_document")
     List<detailedView_doc> findAllbyDocument_Id (@Param("id_document") Integer id_document);
 
+
+
 }

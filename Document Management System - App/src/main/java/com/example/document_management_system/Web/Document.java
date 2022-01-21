@@ -1,6 +1,7 @@
 package com.example.document_management_system.Web;
 
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Model.dokument;
 import com.example.document_management_system.Model.rekord_na_sledenje;
 import com.example.document_management_system.Service.*;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Controller
@@ -63,6 +65,7 @@ public class Document {
         model.addAttribute("Dokument_id",id_dokument );
         model.addAttribute("Klient_id",id_klient );
         model.addAttribute("Vraboten_id", req.getSession().getAttribute("employee"));
+        model.addAttribute("statuses", DocumentStatus.values());
         return "addDocumentRecordForm";
     }
 
@@ -73,7 +76,7 @@ public class Document {
             @RequestParam Integer id_dokument,
             @RequestParam Integer id_klient,
             @RequestParam Integer id_vraboten,
-            @RequestParam String status,
+            @RequestParam DocumentStatus status,
             @RequestParam("file") MultipartFile file,
             @RequestParam String komentar,
             @RequestParam String promena, Model model) throws Exception {
@@ -113,8 +116,7 @@ public class Document {
         try{
             this.documentService.save(client,oddel,file.getOriginalFilename(),file.getContentType(),predmet_na_dokument, file);
             return "redirect:/client?client="+client;
-
-        }catch (Exception e)
+        }catch (IOException e)
         {
             model.addAttribute("hasError", true);
             model.addAttribute("error", e.getMessage());
@@ -132,7 +134,7 @@ public class Document {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(dokument.getTip_na_dokument()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment:filename=\""+dokument.getDostaven_file())
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment:filename=\"" + dokument.getPredmet_na_dokument() + "\"")
                 .body(new ByteArrayResource(dokument.getContent()));
 
     }
@@ -145,7 +147,7 @@ public class Document {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(rns.getTip_na_dokument()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment:filename=\""+rns.getOdgovor_file())
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment: filename=\""+rns.getOdgovor_file()+ "\"")
                 .body(new ByteArrayResource(rns.getContent()));
 
     }

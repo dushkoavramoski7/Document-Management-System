@@ -1,11 +1,9 @@
 package com.example.document_management_system.Model.Views;
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,7 +22,8 @@ public class detailedView_log {
     private String dostaven_file_od_klient;
     private LocalDateTime datum_dostaven_odgovor;
     private LocalDateTime datum_promena;
-    private String status_dokument;
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus status_dokument;
     private String odgovor_file;
     private String komentar;
     private String promena;
@@ -74,7 +73,7 @@ public class detailedView_log {
         return datum_promena;
     }
 
-    public String getStatus_dokument() {
+    public DocumentStatus getStatus_dokument() {
         return status_dokument;
     }
 

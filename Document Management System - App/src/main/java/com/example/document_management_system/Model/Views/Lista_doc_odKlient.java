@@ -2,11 +2,10 @@ package com.example.document_management_system.Model.Views;
 
 
 import com.example.document_management_system.Model.Composite_Primary_Keys.DokumentId;
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import org.hibernate.annotations.Immutable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +26,8 @@ public class Lista_doc_odKlient {
     private String predmet_na_dokument;
     private LocalDateTime datum_primen;
     private LocalDateTime posledna_napravena_promena;
-    private String status_dokument;
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus status_dokument;
 
     public Lista_doc_odKlient() {
 
@@ -71,7 +71,7 @@ public class Lista_doc_odKlient {
         return DateTimeFormatter.ofPattern(DATE_FORMATTER).format(posledna_napravena_promena);
     }
 
-    public String getStatus_dokument() {
+    public DocumentStatus getStatus_dokument() {
         return status_dokument;
     }
 

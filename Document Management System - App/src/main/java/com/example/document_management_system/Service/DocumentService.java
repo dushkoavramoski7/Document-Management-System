@@ -15,7 +15,7 @@ public interface DocumentService {
                          String dostaven_file,
                          String tip_na_dokument,
                          String predmet_na_dokument,
-                         MultipartFile file) throws  Exception;
+                         MultipartFile file) throws IOException;
 
     public dokument findByid(Integer id);
 

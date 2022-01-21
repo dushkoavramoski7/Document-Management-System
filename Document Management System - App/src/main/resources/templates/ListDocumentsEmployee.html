@@ -7,7 +7,9 @@
 </head>
 <style>
     body{
-        font-family: Arial, Helvetica, sans-serif
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     table {
         font-family: Arial, Helvetica, sans-serif;
@@ -120,7 +122,7 @@
             [[${doc.getPosledna_napravena_promena()}]]
             <small th:text="${doc.getPosledna_napravena_promenaDen()}"></small>
         </td>
-        <td th:text="${doc.getStatus_dokument()}" class="statusCode">Статус</td>
+        <td th:text="${doc.getStatus_dokument().name()}" class="statusCode">Статус</td>
         <td style="text-align: center"><a th:href="@{'/document/employee/{id}' (id=${doc.getId_dokument()})}" style="text-decoration: none; font-weight: bold;"  class="btn btn-primary btn-sm" role="button">Прикажи повеќе</a></td>
     </tr>
     </tbody>
