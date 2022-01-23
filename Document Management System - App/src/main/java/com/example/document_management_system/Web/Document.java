@@ -63,6 +63,7 @@ public class Document {
                                 Model model)
     {
         model.addAttribute("Dokument_id",id_dokument );
+        model.addAttribute("DocumentName", this.documentService.findByid(id_dokument).getPredmet_na_dokument());
         model.addAttribute("Klient_id",id_klient );
         model.addAttribute("Vraboten_id", req.getSession().getAttribute("employee"));
         model.addAttribute("statuses", DocumentStatus.values());
