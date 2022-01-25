@@ -1,6 +1,7 @@
 package com.example.document_management_system.Web;
 
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +44,7 @@ public class Home {
         HttpSession httpSession = req.getSession();
         httpSession.setAttribute("client", client);
 
+        model.addAttribute("client",(int) req.getSession().getAttribute("client"));
         model.addAttribute("list_dokuemts_klient", list_doc_odKlientService.filterDocumentsByClinet(client));
         model.addAttribute("promeni", promeniGrupiraniPoMesecService.filterByMonthYear(client));
         model.addAttribute("tekovni_promeni", promeniVoTekovenMesecService.filterTekovniPromeniByClient(client));
@@ -61,6 +63,19 @@ public class Home {
         model.addAttribute("rns_promeneti", vrabotenKolkuRnsPromenilService.findAllByIdVraboten(employee) );
         model.addAttribute("zadadeni", list_doc_odKlientService.findAllbyEmployee(employee));
         return  "ListDocumentsEmployee";
+    }
+
+    @GetMapping("/reports")
+    public String getReportPageForClient(Model model,HttpServletRequest req, HttpServletResponse resp)
+    {
+        Integer client = (int) req.getSession().getAttribute("client");
+       model.addAttribute("RECEIVED", this.list_doc_odKlientService.countByStatus(client, DocumentStatus.RECEIVED));
+        model.addAttribute("COMPLETED", this.list_doc_odKlientService.countByStatus(client, DocumentStatus.COMPLETED));
+        model.addAttribute("HAS_RESPONSE", this.list_doc_odKlientService.countByStatus(client, DocumentStatus.HAS_RESPONSE));
+        model.addAttribute("IN_PROGRESS", this.list_doc_odKlientService.countByStatus(client, DocumentStatus.IN_PROGRESS));
+        model.addAttribute("WAITING_OTHERS", this.list_doc_odKlientService.countByStatus(client, DocumentStatus.WAITING_OTHERS));
+        model.addAttribute("DECLINED", this.list_doc_odKlientService.countByStatus(client, DocumentStatus.DECLINED));
+        return "VisualisationForClient";
     }
 
 

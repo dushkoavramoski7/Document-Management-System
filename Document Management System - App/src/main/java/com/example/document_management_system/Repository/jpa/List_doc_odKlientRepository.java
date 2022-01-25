@@ -1,6 +1,7 @@
 package com.example.document_management_system.Repository.jpa;
 
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Model.Views.Lista_doc_odKlient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,6 +28,12 @@ public interface List_doc_odKlientRepository extends JpaRepository<Lista_doc_odK
     //zemi lista od dokumenti prateni od daden klient so id = id_klient
     @Query("select a from Lista_doc_odKlient as a where a.id_klient = :id_klient")
     List<Lista_doc_odKlient> getDocumentsFromClient(@Param("id_klient") Integer id_klient);
+
+
+    @Query("select count(a.id_dokument) from Lista_doc_odKlient as a where" +
+            " a.status_dokument = :status_dokument and a.id_klient = :id_klient")
+    Integer countByStatus (@Param("status_dokument") DocumentStatus status_dokument,
+                           @Param("id_klient") Integer id_klient );
 
 
 

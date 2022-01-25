@@ -33,8 +33,8 @@
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: left;
-      background-color: gainsboro;
-      border: 1px solid whitesmoke;
+      background-color: whitesmoke;
+      border: 1px solid gainsboro;
     }
     .doc_bymonth_year th{
       background-color: gainsboro;
@@ -76,12 +76,12 @@
       font-weight: bold"> Home </a>
 
   <th:block sec:authorize="hasRole('ROLE_USER')">
-  <form th:method="GET" th:action="@{'/document/addDocument/{client}' (client = ${list_dokuemts_klient[0].getId_klient()})}" style="margin-top: 10px; margin-right: 10px">
+  <form th:method="GET" th:action="@{'/document/addDocument/{client}' (client = ${client})}" style="margin-top: 10px; margin-right: 10px">
     <input type="submit" value="Add document" role="button" class="btn btn-primary btn" style="float: right;color: white; font-weight: bold">
   </form>
   </th:block>
 
-  <form th:method="GET" th:action="@{'/document/addDocument/{client}' (client = ${list_dokuemts_klient[0].getId_klient()})}" style="margin-top: 10px; margin-right: 15px">
+  <form th:method="GET" action="/reports" style="margin-top: 10px; margin-right: 15px">
     <input type="submit" value="Show reports & charts" role="button" class="btn btn-primary btn" style="float: right;color: white; font-weight: bold; margin-right: 10px">
   </form>
 

@@ -1,7 +1,9 @@
 package com.example.document_management_system.Service;
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Model.Views.Lista_doc_odKlient;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface List_doc_odKlientService {
@@ -15,4 +17,7 @@ public interface List_doc_odKlientService {
     public List<Lista_doc_odKlient> findAllbyEmployee(Integer employee);
 
     public List<String> findAllclientsbyEmployee (Integer employee);
+
+
+    public  Integer countByStatus(Integer client, DocumentStatus documentStatus);
 }

@@ -1,10 +1,12 @@
 package com.example.document_management_system.Service.Implementation;
 
+import com.example.document_management_system.Model.Enum.DocumentStatus;
 import com.example.document_management_system.Model.Views.Lista_doc_odKlient;
 import com.example.document_management_system.Repository.jpa.List_doc_odKlientRepository;
 import com.example.document_management_system.Service.List_doc_odKlientService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -46,5 +48,10 @@ public class List_doc_od_KlientImpl implements List_doc_odKlientService {
     @Override
     public List<String> findAllclientsbyEmployee(Integer employee) {
         return list_doc_odKlientRepository.findAllclientsbyEmployee(employee);
+    }
+
+    @Override
+    public Integer countByStatus(Integer client, DocumentStatus documentStatus) {
+        return this.list_doc_odKlientRepository.countByStatus(documentStatus, client);
     }
 }
