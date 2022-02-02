@@ -1,37 +1,44 @@
 
+
 CREATE VIEW lista_doc_odKlient AS
-    select a.id_klient,d.id_dokument,d.predmet_na_dokument,d.datum_primen, a.posledna_napravena_promena, rns.status_dokument
+    select a.id_klient,rns.id_vraboten,o.ime_oddel,a.ime,d.id_dokument,d.predmet_na_dokument,d.datum_primen, a.posledna_napravena_promena, rns.status_dokument
     from rekord_na_sledenje as rns
     join (
         select k.id_klient,
+               k.ime,
                d.id_dokument,
                max(rns.datum_promena) as posledna_napravena_promena
         from dokument as d
                  join klient as k on d.id_klient = k.id_klient
                  join rekord_na_sledenje as rns on d.id_dokument = rns.id_dokument
-        group by k.id_klient, d.id_dokument
+        group by k.id_klient, k.ime, d.id_dokument
     ) as a on rns.id_klient = a.id_klient and rns.id_dokument = a.id_dokument and rns.datum_promena = a.posledna_napravena_promena
     join dokument as d on rns.id_dokument = d.id_dokument
+    join vraboten v on d.id_vraboten = v.id_vraboten
+    join oddel o on v.id_oddel = o.id_oddel
     order by a.posledna_napravena_promena desc;
 
 
--- select * from lista_doc_odKlient
+
+select a.* from lista_doc_odKlient as a;
 -- where id_klient = 1;
 
 -----------
 -----------
 
 CREATE VIEW detialView_document AS
-    select d.id_dokument, k.id_klient, d.datum_primen, d.predmet_na_dokument, d.tip_na_dokument, d.dostaven_file,
+    select d.id_dokument, k.id_klient, k.ime, d.datum_primen, d.predmet_na_dokument, d.tip_na_dokument, d.dostaven_file,
             rns.id_rekord,rns.datum_promena, rns.status_dokument
     from dokument as d
         join klient as k on d.id_klient = k.id_klient
         join rekord_na_sledenje as rns on d.id_dokument = rns.id_dokument
     order by rns.datum_promena desc;
 
+drop view detialView_document;
 
--- select * from detialView_document
---     where id_dokument = 7;
+
+select * from detialView_document
+    where id_dokument = 7;
 
 -----------
 -----------
@@ -50,6 +57,7 @@ CREATE VIEW detialView_Log AS
         join vraboten as v on rns.id_vraboten = v.id_vraboten
         join oddel o on v.id_oddel = o.id_oddel;
 
+drop view detialView_Log;
 
 -- select * from detialView_Log
 -- where id_rekord = 3;
@@ -62,6 +70,8 @@ CREATE VIEW lista_Klienti AS
     from Klient as k
         left join dokument as d on k.id_klient = d.id_klient
     order by 1;
+
+drop view lista_Klienti;
 
 
 -- select * from lista_Klienti;

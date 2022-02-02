@@ -16,7 +16,7 @@
 
     -- Oddel (id_oddel, ime_oddel)
     create table Oddel(
-      id_oddel char(5),
+      id_oddel varchar(5),
       ime_oddel varchar(100) not null,
       constraint pk_oddel primary key (id_oddel),
       constraint ck_oddel check (length(id_oddel) = 5)
@@ -30,17 +30,22 @@
                             ,('40000', 'Sektor za nauka i inovacii');
 
     select * from Oddel;
+    alter table Oddel
+alter column id_oddel  type varchar(5);
 
 
     -- Vraboten (id_vraboten, id_oddel*(Oddel), ime_vraboten, prezime_vraboten)
     create table Vraboten (
         id_vraboten serial,
-        id_oddel char(5) not null,
+        id_oddel varchar(5) not null,
         ime_vraboten varchar(100) not null,
         prezime_vraboten varchar(100) not null,
         constraint pk_vraboten primary key (id_vraboten),
         constraint fk_oddel_vraboten foreign key (id_oddel) references Oddel (id_oddel) on delete restrict on update cascade
     );
+
+    alter table Vraboten
+alter column id_oddel  type varchar(5);
 
     insert into Vraboten (id_oddel, ime_vraboten, prezime_vraboten) values ('10000', 'Mitra', 'Mitrevska')
                                                                             ,('20000', 'Filip', 'Filipovski')
@@ -67,8 +72,12 @@
         constraint ck_tip_dokument check ( tip_na_dokument ilike ANY(ARRAY['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.txt','.ppt', '.pptx']))
     );
 
+-- alter table Dokument
+-- alter column tip_na_dokument type varchar(200);
 
-    insert into Dokument (id_klient, id_vraboten, dostaven_file, tip_na_dokument, predmet_na_dokument)  values
+
+    insert into Dokument (id_klient, id_vraboten, dostaven_file, tip_na_dokument, predmet_na_dokument, datum_primen)  values
+    (1,1, 'C:\Users\Dusko\DataGripProjects\Document Managment System - BNP\dogovor4.pdf', '.pdf', 'Sklucuvanje na dogovor za rabotno delo vo kompanija DM', now()-interval '1 month'),
     (1,1, 'C:\Users\Dusko\DataGripProjects\Document Managment System - BNP\dogovor.pdf', '.pdf', 'Sklucuvanje na dogovor za rabotno delo')
     ,(1,2, 'C:\Users\Dusko\DataGripProjects\Document Managment System - BNP\molba.pdf', '.pdf', 'Molba')
     ,(2,3, 'C:\Users\Dusko\DataGripProjects\Document Managment System - BNP\potvrda1.pdf', '.pdf', 'Potvrda za redoven student')
@@ -101,6 +110,22 @@
         constraint ck_datum_primen check (datum_dostavuvanje::date <= now()::date),
         constraint ck_datum_promena check (datum_promena::date <= now()::date)
     );
+select * from Dokument;
+-- alter table Rekord_na_sledenje
+-- add column content bytea;
+-- alter table Rekord_na_sledenje
+-- add column tip_na_dokument varchar(200);
+
+
+-- alter table Dokument
+-- add column content bytea;
+
+    insert into Rekord_na_sledenje (id_dokument, id_klient, id_vraboten, datum_dostavuvanje, datum_promena, status_dokument, odgovor_file, komentar, promena)
+    values(5,3,4,null, now(),'Realizirano', null, 'Baranjeto e realizirano', null);
+    values (2,1,2,null, now(), 'Realizirano', null, 'Realizirano baranje na klientot', null);
+    values (8,1,1,null, now(), 'Realizirano', null, 'Realizirano', null);
+     values (5,3,4,null, now(), 'Vo obrabotka', null, 'Dokumentot se naogja vo obrabotka', null);
+
 
    -- insert into Rekord_na_sledenje (id_dokument, id_klient, id_vraboten, datum_dostavuvanje, datum_promena, status_dokument, odgovor_file, komentar, promena) VALUES --(1,1,1,null,now(),'Podneseno baranje',null,null,null),
                                                                                                                                                                      --(1,1,1,null,now(),'Vo obrabotka', null,'Baranjeto e isprateno za obrabotka vo oddel-ot za covecki resursi',null),
