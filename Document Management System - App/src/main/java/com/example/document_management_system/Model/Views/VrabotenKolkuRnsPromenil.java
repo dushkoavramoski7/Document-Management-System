@@ -3,7 +3,7 @@ package com.example.document_management_system.Model.Views;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "vraboten_kolku_rns_promenil", schema = "dms_project", catalog = "Document Managment System - Project BNP")
+@Table(name = "vraboten_kolku_rns_promenil")
 public class VrabotenKolkuRnsPromenil {
     @Id
     @Column(name = "id_vraboten")

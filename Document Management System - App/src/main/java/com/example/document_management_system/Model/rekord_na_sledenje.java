@@ -86,4 +86,16 @@ public class rekord_na_sledenje {
     public String getPromena() {
         return promena;
     }
+
+    public int getId_rekord() {
+        return id_rekord;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public String getTip_na_dokument() {
+        return tip_na_dokument;
+    }
 }

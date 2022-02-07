@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.time.Month;
 
 @Entity
-@Table(name = "promeni_grupirani_po_mesec_godina", schema = "dms_project", catalog = "Document Managment System - Project BNP")
+@Table(name = "promeni_grupirani_po_mesec_godina")
 @IdClass(KlientMesecGodina.class)
 public class PromeniGrupiraniPoMesecGodina {
 

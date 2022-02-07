@@ -41,7 +41,7 @@
         <h3 style="text-align: center"> Форма за креирање на рекорд на следење</h3>
         <h1 style="text-align: center" th:text="'Внеси нов рекорд на следење за документ:'"></h1>
         <br>
-        <h2 style="text-align: center" th:text="${DocumentName}"></h2>
+        <h2 style="text-align: center" th:text="${DocumentName.getPredmet_na_dokument()}"></h2>
         <form action="/document/add-record" method="post" enctype="multipart/form-data">
             <input type="hidden" id="id_dokument" name="id_dokument" th:value="${Dokument_id}">
             <input type="hidden" id="id_klient" name="id_klient" th:value="${Klient_id}">

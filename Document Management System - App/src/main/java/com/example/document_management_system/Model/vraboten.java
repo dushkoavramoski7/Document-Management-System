@@ -15,4 +15,20 @@ public class vraboten {
     private String ime_vraboten;
     private String prezime_vraboten;
 
+
+    public int getId_vraboten() {
+        return id_vraboten;
+    }
+
+    public oddel getId_oddel() {
+        return id_oddel;
+    }
+
+    public String getIme_vraboten() {
+        return ime_vraboten;
+    }
+
+    public String getPrezime_vraboten() {
+        return prezime_vraboten;
+    }
 }

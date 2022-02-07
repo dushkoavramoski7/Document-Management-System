@@ -20,21 +20,23 @@ public class Home {
     private final PromeniVoTekovenMesecService promeniVoTekovenMesecService;
     private final Vraboten_kolku_doc_uspesno_realiziralService vraboten_kolku_doc_uspesno_realiziralService;
     private final VrabotenKolkuRnsPromenilService vrabotenKolkuRnsPromenilService;
+    private final VrabotenService vrabotenService;
 
-    public Home(List_doc_odKlientService list_doc_odKlientService, ListaKlientiService listaKlientiService, PromeniGrupiraniPoMesecService promeniGrupiraniPoMesecService, PromeniVoTekovenMesecService promeniVoTekovenMesecService, Vraboten_kolku_doc_uspesno_realiziralService vraboten_kolku_doc_uspesno_realiziralService, VrabotenKolkuRnsPromenilService vrabotenKolkuRnsPromenilService) {
+    public Home(List_doc_odKlientService list_doc_odKlientService, ListaKlientiService listaKlientiService, PromeniGrupiraniPoMesecService promeniGrupiraniPoMesecService, PromeniVoTekovenMesecService promeniVoTekovenMesecService, Vraboten_kolku_doc_uspesno_realiziralService vraboten_kolku_doc_uspesno_realiziralService, VrabotenKolkuRnsPromenilService vrabotenKolkuRnsPromenilService, VrabotenService vrabotenService) {
         this.list_doc_odKlientService = list_doc_odKlientService;
         this.listaKlientiService = listaKlientiService;
         this.promeniGrupiraniPoMesecService = promeniGrupiraniPoMesecService;
         this.promeniVoTekovenMesecService = promeniVoTekovenMesecService;
         this.vraboten_kolku_doc_uspesno_realiziralService = vraboten_kolku_doc_uspesno_realiziralService;
         this.vrabotenKolkuRnsPromenilService = vrabotenKolkuRnsPromenilService;
+        this.vrabotenService = vrabotenService;
     }
 
     @GetMapping("/home")
     public String getHomePageAll(Model model, HttpServletRequest req, HttpServletResponse resp)
     {
         model.addAttribute("clients", listaKlientiService.findAll());
-        model.addAttribute("vraboteni", vraboten_kolku_doc_uspesno_realiziralService.findAll());
+        model.addAttribute("vraboteni", vrabotenService.findAll());
         return "Home";
     }
 

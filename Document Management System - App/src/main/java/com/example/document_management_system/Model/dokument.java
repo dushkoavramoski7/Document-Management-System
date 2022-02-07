@@ -38,4 +38,31 @@ public class dokument {
 
     }
 
+    public int getId_dokument() {
+        return id_dokument;
+    }
+
+    public klient getId_klient() {
+        return id_klient;
+    }
+
+    public vraboten getId_vraboten() {
+        return id_vraboten;
+    }
+
+    public String getDostaven_file() {
+        return dostaven_file;
+    }
+
+    public String getTip_na_dokument() {
+        return tip_na_dokument;
+    }
+
+    public String getPredmet_na_dokument() {
+        return predmet_na_dokument;
+    }
+
+    public LocalDateTime getDatum_primen() {
+        return datum_primen;
+    }
 }

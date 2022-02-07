@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity  //klasa koja se povrzuva so baza na podatoci
-@Data
 @Table(name = "oddel")
 public class oddel {
 
@@ -16,4 +15,11 @@ public class oddel {
     private String  id_oddel;
     private String ime_oddel;
 
+    public String getId_oddel() {
+        return id_oddel;
+    }
+
+    public String getIme_oddel() {
+        return ime_oddel;
+    }
 }

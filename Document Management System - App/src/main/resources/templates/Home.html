@@ -52,7 +52,7 @@
 
 
 <div id="background">
-    <a role="button" class="btn btn-primary"  href="/logout" style="float:right; margin-right: 20px; margin-top: 20px; text-decoration: none;  font-weight: bold">Logout</a>
+    <a role="button" class="btn btn-dark"  href="/logout" style="float:right; margin-right: 20px; margin-top: 20px; text-decoration: none;  font-weight: bold">Logout</a>
     <div id="options">
         <div id="forms">
         <!--            odberi klient-->
@@ -72,7 +72,7 @@
                 <form th:method="get" th:action="@{/employee}" style="display: inline-block; margin-right: 10px">
                     <select name="employee"  onchange="this.form.submit();" >
                         <option value="" selected disabled hidden style="text-align: center">-- Select emplyee -- </option>
-                        <option th:each="vraboten : ${vraboteni}" th:value="${vraboten.getId_vraboten()}" th:text="${vraboten.getIme_vraboten() + ' ' + vraboten.getPrezime_vraboten() + ' - ' + vraboten.getIme_oddel()} " name="employee"></option>
+                        <option th:each="vraboten : ${vraboteni}" th:value="${vraboten.getId_vraboten()}" th:text="${vraboten.getIme_vraboten() + ' ' + vraboten.getPrezime_vraboten() + ' - ' + vraboten.getId_oddel().getIme_oddel()} " name="employee"></option>
                     </select>
                 </form>
             </th:block>
